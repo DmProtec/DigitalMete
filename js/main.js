@@ -186,12 +186,16 @@ const productos = [
 ];
 
 
-const contenedorproductos = document.querySelector("#contenedor-productos");
+const contenedorProductos = document.querySelector("#contenedor-productos");
 const botonesCategorias = document.querySelectorAll(".boton-categoria");
 const tituloPrincipal = document.querySelector("#titulo-principal");
+let botonesAgregar = document.querySelectorAll(".producto-agregar");
 
-function cargarProductos () {
-    productos.forEach(producto => {
+function cargarProductos(productosElegidos) {
+
+    contenedorProductos.innerHTML = "";
+
+    productosElegidos.forEach(producto => {
 
         const div = document.createElement("div");
         div.classList.add("producto");
@@ -204,9 +208,11 @@ function cargarProductos () {
             </div>
         `;
 
-        contenedorproductos.append(div);
+        contenedorProductos.append(div);
     })
-    
+ 
+    actualizarBotonesAgregar();
+    console.log(botonesAgregar);
 }
 
 cargarProductos(productos);
@@ -228,5 +234,17 @@ botonesCategorias.forEach(boton => {
         }
 
     })
-});
+})
+
+function actualizarBotonesAgregar() {
+    botonesAgregar = document.querySelectorAll(".producto-agregar");
+
+    botonesAgregar.forEach(boton => {
+        boton.addEventListener("click", agregarAlCarrito);
+    });
+}
+
+
+
+
 
