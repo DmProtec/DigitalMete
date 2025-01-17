@@ -216,11 +216,11 @@ function cargarProductos(productosElegidos) {
 }
 
 cargarProductos(productos);
-
-botonesCategorias.forEach(boton => {
+        
+botonesCategorias.forEach(boton => {        
     boton.addEventListener("click", (e) => {
 
-        botonesCategorias.forEach(boton => boton.classList.remove("active"));
+    botonesCategorias.forEach(boton => boton.classList.remove("active"));
         e.currentTarget.classList.add("active");
 
         if (e.currentTarget.id != "todos") {
@@ -246,16 +246,17 @@ function actualizarBotonesAgregar() {
 
 let productosEnCarrito;
 
-const productosEnCarritoLS = JSON.parse(localStorage.getItem("productos-en-carrito"));
+
+let productosEnCarritoLS = localStorage.getItem("productos-en-carrito");
 
 if (productosEnCarritoLS) {
-    productosEnCarrito = productosEnCarritoLS;
+    productosEnCarrito = JSON.parse(productosEnCarritoLS);
     actualizarNumerito();
 } else {
     productosEnCarrito = [];
 }
 
-
+    
 function agregarAlCarrito(e) {
 
     const idBoton = e.currentTarget.id;
@@ -264,8 +265,7 @@ function agregarAlCarrito(e) {
     if(productosEnCarrito.some(producto => producto.id === idBoton)) {
         const index = productosEnCarrito.findIndex(producto => producto.id === idBoton);
         productosEnCarrito[index].cantidad++;
-
-    }  else {
+    } else {
         productoAgregado.cantidad = 1;
         productosEnCarrito.push(productoAgregado);
     }
@@ -279,5 +279,5 @@ function agregarAlCarrito(e) {
 function actualizarNumerito() {
     let nuevoNumerito = productosEnCarrito.reduce((acc, producto) => acc + producto.cantidad, 0);
     numerito.innerText = nuevoNumerito;
-
+    
 }
