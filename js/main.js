@@ -213,7 +213,6 @@ function cargarProductos(productosElegidos) {
     })
  
     actualizarBotonesAgregar();
-    console.log(botonesAgregar);
 }
 
 cargarProductos(productos);
@@ -282,8 +281,3 @@ function actualizarNumerito() {
     numerito.innerText = nuevoNumerito;
 
 }
-
-
-
-
-
